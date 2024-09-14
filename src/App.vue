@@ -7,10 +7,7 @@ import InputTag from './components/InputTag.vue';
 <template>
 
 <h1>Hello world!!</h1>
-
-
-
-
+  
 <InputTag></InputTag>
 
 </template>
