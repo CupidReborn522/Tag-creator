@@ -1,8 +1,23 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import InputTag from './components/InputTag.vue';
+
+
 </script>
 
-<template></template>
+<template>
 
-<style scoped></style>
+<h1>Hello world!!</h1>
+
+
+
+
+<InputTag></InputTag>
+
+</template>
+
+<style scoped>
+h1{
+  text-align: center;
+  padding:10px;
+}
+</style>
