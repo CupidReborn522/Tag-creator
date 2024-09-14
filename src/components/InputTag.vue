@@ -29,6 +29,7 @@ export default {
 
         deleteTag(tag) {
             this.tags = this.tags.filter(item => item != tag);
+            this.onTagsChange(this.tags)
         }
     }
 }
