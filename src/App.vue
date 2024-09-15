@@ -5,9 +5,16 @@ export default {
   components: {
     InputTag,
   },
+  data(){
+    return {
+      tagsLength: 0
+    }
+  },
+
   methods: {
     handleTagschange(tags) {
       console.log(tags)
+      this.tagsLength = tags.length
     }
 
   },
@@ -16,8 +23,8 @@ export default {
 
 <template>
   <h1>Tag input</h1>
-  <h2>Add your custom tag ;)</h2>
-<div class="container">
+  <div class="container">
+  <h2 id="mssg" v-if="this.tagsLength == 0">Add your custom tag ;)</h2>
   <InputTag @onTagsChange="handleTagschange" />
 </div>
 </template>
