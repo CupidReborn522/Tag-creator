@@ -1,7 +1,7 @@
 <script>
 
 export default {
-    props:["onTagsChange"],
+    emits:["onTagsChange"],
     data() {
         return {
             currentValue: "",
@@ -12,11 +12,9 @@ export default {
     },
     methods: {
         handleKeydown(e) {
-            console.log(e.key)
             if (e.key == 'Backspace' && this.currentValue == '') {
                 this.tags.pop();
-                this.onTagsChange(this.tags)
-
+                this.$emit('onTagsChange',this.tags);
             }
         },
         handleSubmit() {
@@ -24,12 +22,14 @@ export default {
             if (this.currentValue != '' && !exist) {
                 this.tags.push(this.currentValue);
                 this.currentValue = '';
+                this.$emit('onTagsChange',this.tags);
+                // console.log(this.tags)
             }
         },
 
         deleteTag(tag) {
             this.tags = this.tags.filter(item => item != tag);
-            this.onTagsChange(this.tags)
+            this.$emit('onTagsChange',this.tags);
         }
     }
 }
@@ -39,8 +39,12 @@ export default {
 <template>
     <div class="inputTag">
         <div class="tags">
+            <div class="tag" style="opacity: 0;" v-if="tags.length == 0">
+                <button @click="deleteTag(tag)" style="opacity: 0; pointer-events: none;" >X</button>
+            </div>
             <div class="tag" v-for="(tag, index) in tags" :key="index">
-                {{ tag }} <button @click="deleteTag(tag)">X</button>
+                {{ tag }} 
+                <button @click="deleteTag(tag)" >X</button>
             </div>
         </div>
         <form @submit.prevent="handleSubmit">
